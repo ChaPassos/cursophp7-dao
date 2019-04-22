@@ -39,7 +39,7 @@
                 ":ID"=>$id
                 ));
             
-            if(isset($results[0])){
+            if(count($results) > 0){
                 $this->setData($results[0]);
             }
         }
@@ -53,7 +53,7 @@
         public static function search($Login){
             $sql = new Sql();
             return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
-                ':SEARCH'=>"%".$Login."%"
+                ":SEARCH"=>"%".$Login."%"
             ));
         }
 
@@ -64,7 +64,7 @@
                 ":PASSWORD"=>$password
                 ));
             
-            if(isset($results[0])){
+            if(count($results > 0)){
                 
                 $this->setData($results[0]);
                 
@@ -79,19 +79,21 @@
             $this->setIdusuario($data['idusuario']);
             $this->setDeslogin($data['deslogin']);
             $this->setDessenha($data['dessenha']);
-            $this->setDtcadastro(new DateTime($data['dtcadastro']));
+            $this->setDtcadastro(new DateTime($data['dtcadastro']));            
         }
+        
 
         public function insert(){
             $sql = new Sql();
             $results = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
-                'LOGIN'=>$this->getDeslogin(),
-                'PASSWORD'=>$this->getDessenha()
-            ));
+                ':LOGIN'=>$this->getDeslogin(),
+                ':PASSWORD'=>$this->getDessenha()
+            ));            
 
             if(count($results) > 0){
                 $this->setData($results[0]);
             }
+            
         }
 
         public function __toString(){

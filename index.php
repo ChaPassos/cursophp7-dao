@@ -28,10 +28,10 @@
 
     $aluno = new Usuario();
 
-    $aluno->setDeslogin("aluno");
-    $aluno->setDessenha("@lun0");
+    $aluno->setDeslogin("test");
+    $aluno->setDessenha("test");
 
     $aluno->insert();
 
-    echo $aluno;
+    //print_r($aluno);
 ?>
