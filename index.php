@@ -26,12 +26,13 @@
     //$usuario->login("root","!@#$");
     //echo $usuario;
 
-    $aluno = new Usuario();
-
-    $aluno->setDeslogin("test");
-    $aluno->setDessenha("test");
-
-    $aluno->insert();
-
+    //Criando um novo usuário
+    //$aluno = new Usuario("aluno","@lun0");
+    //$aluno->insert();
     //print_r($aluno);
+
+    $usuario = new Usuario();
+    $usuario->loadById(13);
+    $usuario->update("professor", "!@#$%¨&*");
+    echo $usuario;
 ?>
